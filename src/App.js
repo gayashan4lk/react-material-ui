@@ -13,25 +13,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
+import useStyles from "./app.styles";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    background: "#eee",
-    padding : theme.spacing (8, 0, 6),
-  },
-  test: {
-    backgroundColor: theme.palette.background.paper,
-    border: "1px solid black ",
-    width: 200,
-    height: 100,
-  },
-  anyfuck: {
-    marginRight: "20px"
-  },
-  buttons: {
-    marginTop: "40px"
-  },
-}));
+const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const App = () => {
   const classes = useStyles();
@@ -73,10 +57,43 @@ const App = () => {
             </div>
           </Container>
         </div>
+        <Container className={classes.cardGrid} maxWidth="lg">
+          <Grid container spacing={4} >
+            {cards.map( (card) => (
+              <Grid item key={card} xs={12} sm={6} md={4}>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image="https://source.unsplash.com/random"
+                    title="random image"
+                  />
+                  <CardContent className={classes.cardContent} >
+                    <Typography gutterBottom variant="h5">
+                      This image is awesome.
+                    </Typography>
+                    <Typography>
+                      This is a Media Card. This is the description of it.
+                    </Typography>
+                    <CardActions>
+                      <Button size="small" color="primary">View</Button>
+                      <Button size="small" color="primary">Edit</Button>
+                    </CardActions>
+                    <div style={{width: '0px', height: '0px'}}> </div>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
       </main>
-      <div className={classes.test}>
-
-      </div>
+      <footer className={classes.footer} >
+        <Typography variant="h6" align="center" gutterBottom>
+          Footer
+        </Typography>
+        <Typography variant="subtitle1" align="center" color="textSecondary">
+          This is the footer. You can put any info about the site here.
+        </Typography>
+      </footer>
     </React.Fragment>
   );
 }
